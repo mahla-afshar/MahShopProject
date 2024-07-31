@@ -4,11 +4,14 @@ import Container from '../../components/container/Container'
 import Button from '../../components/button/Button'
 import { getProduct } from '../../servers/api'
 import { IProduct} from '../../type/servers'
+import { useShoppingCartContext } from '../../context/ShoppingCartContext'
 
 function Product() {
 
     const params =useParams <{id:string}>();
     const [product,setProduct] =useState<IProduct>()
+
+    const {cartItems} =useShoppingCartContext();
 
     useEffect(() =>{
       getProduct(params.id as string).then((result) =>{
